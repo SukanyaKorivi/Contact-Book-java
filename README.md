@@ -40,7 +40,7 @@ Main.java           - handles the menu and user input
 
 ## What I learned building this
 
-This was my first Java project built completely from scratch. 
+This was my second Java project built completely from scratch. 
 I used HashMap to store contacts with name as key and Contact 
 object as value for fast retrieval. I split the logic across 
 3 classes to keep each file responsible for one job only. 
