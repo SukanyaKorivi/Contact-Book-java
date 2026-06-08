@@ -12,13 +12,13 @@ class Contact{
       }
 public void display(){
     
-      System.out.println("Contact Details\n");
+      
 
 
-      System.out.println("Name:"+name);
-      System.out.println("Number:"+number);
-      System.out.println("Email:"+email);
-
+      System.out.println("Name:"+name+"      Number:"+number+"      Email:"+email);
+    
 
 }
+
+public long getNumber(){return number;}
 }

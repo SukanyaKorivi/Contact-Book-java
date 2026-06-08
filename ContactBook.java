@@ -1,10 +1,16 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Collections;
+import java.util.LinkedHashMap;
 
 class ContactBook{
 
 
 Map<String, Contact> contactlist= new HashMap<>();
+
+
 
 
 public void addContact(String name,Long number,String email){
@@ -29,6 +35,20 @@ public void searchContact(String name){
       }
 
 }
+
+
+public void searchByNumber(Long number){
+
+boolean found=false;
+for(Map.Entry<String,Contact> entry: contactlist.entrySet()){
+               if(entry.getValue() != null && number.equals(entry.getValue().getNumber())){
+                        Contact c=entry.getValue();
+                        c.display();
+                        found=true;
+                        break;}
+                }
+                if(!found){System.out.println("Contact not found");}}
+
 public void deleteContact(String name){
 
        if(contactlist.containsKey(name.toLowerCase())){
@@ -39,7 +59,7 @@ public void deleteContact(String name){
        }
        else{
 
-             System.out.println("Contact not found");
+             System.out.println("Contact not found\n");
        }
 
 }
@@ -54,10 +74,15 @@ public void listAllContacts(){
       }
 
       else{
+        List<Map.Entry<String, Contact>> listsort=new ArrayList<>(contactlist.entrySet());
+        Collections.sort(listsort, (e1,e2) -> e1.getKey().compareTo(e2.getKey()));
+        LinkedHashMap<String ,Contact> sortedcontactlist= new LinkedHashMap<>();
+        for(Map.Entry<String, Contact> entry:listsort){
+                    sortedcontactlist.put(entry.getKey(),entry.getValue());}
 
-           for (String names : contactlist.keySet()){
+           for (Contact c:sortedcontactlist.values()){
 
-                   Contact c= contactlist.get(names.toLowerCase());
+                  
 
                    c.display();
              }
@@ -74,7 +99,7 @@ public void updateContact(String name,Long number,String email){
     
   Contact obj1=new Contact(name,number,email);
   contactlist.put(name.toLowerCase(),obj1);
-  System.out.println("Contact updated successfully!");  
+  System.out.println("Contact updated successfully!\n");  
 
           }
 

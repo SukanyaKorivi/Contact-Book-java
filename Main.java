@@ -22,7 +22,7 @@ boolean exit=false;
 
 while(!exit){
 
-System.out.println("Menu:\n1.Add Contact\n2.Search Contact\n3.delete Contact\n4.List All Contacts\n5.Exit\n6.updateContact\n7.countContacts\nEnter Your Choice");
+System.out.println("\nMenu:\n1.Add Contact\n2.Search Contact\n3.delete Contact\n4.List All Contacts\n5.Exit\n6.updateContact\n7.countContacts\n8.searchByNumber\nEnter Your Choice");
 
 int operation=sc. nextInt();
 sc.nextLine();
@@ -31,14 +31,14 @@ sc.nextLine();
 switch (operation){
 
                            case 1:
-                                  System.out.println("Enter name");
+                                  System.out.println("\nEnter name");
                                   name = sc.nextLine();
                                   
 
                                   boolean validate=false;
                                   boolean skipped = false;
                                   while(!validate){
-                                           System.out.println("Enter number");
+                                           System.out.println("\nEnter number");
                                            String temp = sc.nextLine();
                                        
                                            if (temp.length()==10 && temp.matches("[0-9]+")){
@@ -46,8 +46,8 @@ switch (operation){
                                                          validate=true;}
                                   
                                           else{
-                                                        System.out.println("Invalid Number");
-                                                        System.out.println("1.Add valid number / 2.Skip");
+                                                        System.out.println("\nInvalid Number");
+                                                        System.out.println("\n1.Add valid number / 2.Skip");
                                                         int choice=sc.nextInt();
                                                         sc.nextLine();
                                                         if(choice == 1){
@@ -59,16 +59,16 @@ switch (operation){
                                    }
                                   
                                   if(!skipped){
-                                  System.out.println("Enter Email");
+                                  System.out.println("\nEnter Email");
                                   email=sc.nextLine();
 
                                   cb.addContact(name,number,email);}
-                                  else{System.out.println("Contact Not Added");}
+                                  else{System.out.println("\nContact Not Added");}
                                   break;
 
                           case 2:
 
-                                  System.out.println("enter Contact name");
+                                  System.out.println("\nEnter Contact name");
                                   name=sc.nextLine();
 
                                   cb.searchContact(name);
@@ -76,7 +76,7 @@ switch (operation){
 
                           case 3:
 
-                                  System.out.println("Enter Contact");
+                                  System.out.println("\nEnter Contact");
                                   name=sc.nextLine();
 
                                   cb.deleteContact(name);
@@ -89,24 +89,24 @@ switch (operation){
 
                           case 5:
      
-                                  System.out.println("Goodbye!");
+                                  System.out.println("\nGoodbye!");
                                   exit=true;
                                   break;
   
                           case 6:
      
-                                  System.out.println("Enter Contact Name");
+                                  System.out.println("\nEnter Contact Name");
                                   name=sc.nextLine();
 
                                   if(cb.checkContact(name)){
      
-                                  System.out.println("What do you want  to update? Number/Email/Both");
+                                  System.out.println("\nWhat do you want  to update? Number/Email/Both");
                                   String choice=sc.nextLine();
     
 
                                   if (choice.equals("Number")){
 
-                                                 System.out.println("Enter Number");
+                                                 System.out.println("\nEnter Number");
                                                  number=sc.nextLong();
                                                  sc.nextLine();
 
@@ -114,19 +114,19 @@ switch (operation){
 
                                   else if(choice.equals("Email")){
 
-                                                 System.out.println("Enter email");
+                                                 System.out.println("\nEnter email");
                                                  email=sc.nextLine();
  
                                                 cb.updateContact(name,email);}
 
                                   else{
 
-                                               System.out.println("Enter Number");
+                                               System.out.println("\nEnter Number");
                                                number=sc.nextLong();
                                                sc.nextLine();
 
 
-                                               System.out.println("Enter email");
+                                               System.out.println("\nEnter email");
                                                email=sc.nextLine();
 
                                                cb.updateContact(name,number,email);}
@@ -135,7 +135,7 @@ switch (operation){
      
                                    }
                                    else{
-                                   System.out.println("Contact not Found");}
+                                   System.out.println("\nContact not Found");}
      
                                    break;
      
@@ -145,6 +145,34 @@ switch (operation){
 
                               cb.countContact();
                               break;
+
+                       case 8:
+                             boolean validate1=false;
+                             while(!validate1){
+                                           System.out.println("\nEnter number");
+                                           String temp = sc.nextLine();
+                                       
+                                           if (temp.length()==10 && temp.matches("[0-9]+")){
+                                                         number=Long.parseLong(temp);
+                                                         
+                                                        cb.searchByNumber(number);
+                                                         validate1=true;}
+                                  
+                                          else{
+                                                        System.out.println("\nInvalid Number");
+                                                        System.out.println("\n1.Add valid number / 2.Skip");
+                                                        int choice=sc.nextInt();
+                                                        sc.nextLine();
+                                                        if(choice == 1){
+                                                                 continue;}
+                                                        else{
+                                                                 validate1=true;
+                                                                 }
+                                              }
+                                   }
+
+                                   break;
+                                   
 
 }
 
