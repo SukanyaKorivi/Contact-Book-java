@@ -11,7 +11,7 @@ public void addContact(String name,Long number,String email){
 
   Contact obj=new Contact(name,number,email);
 
-  contactlist.put(name,obj);
+  contactlist.put(name.toLowerCase(),obj);
   
 }
 
@@ -19,9 +19,9 @@ public void addContact(String name,Long number,String email){
 public void searchContact(String name){
     
 
-      if(contactlist.containsKey(name)){
+      if(contactlist.containsKey(name.toLowerCase())){
  
-             Contact c=contactlist.get(name);
+             Contact c=contactlist.get(name.toLowerCase());
              c.display();
       }
       else{
@@ -31,10 +31,10 @@ public void searchContact(String name){
 }
 public void deleteContact(String name){
 
-       if(contactlist.containsKey(name)){
+       if(contactlist.containsKey(name.toLowerCase())){
   
 
-             contactlist.remove(name);
+             contactlist.remove(name.toLowerCase());
              System.out.println("Contact deleted successfully!");
        }
        else{
@@ -57,7 +57,7 @@ public void listAllContacts(){
 
            for (String names : contactlist.keySet()){
 
-                   Contact c= contactlist.get(names);
+                   Contact c= contactlist.get(names.toLowerCase());
 
                    c.display();
              }
@@ -65,7 +65,7 @@ public void listAllContacts(){
 }
 
 public boolean checkContact(String name){
-        return contactlist.containsKey(name);
+        return contactlist.containsKey(name.toLowerCase());
    
 }
 
@@ -73,7 +73,7 @@ public boolean checkContact(String name){
 public void updateContact(String name,Long number,String email){
     
   Contact obj1=new Contact(name,number,email);
-  contactlist.put(name,obj1);
+  contactlist.put(name.toLowerCase(),obj1);
   System.out.println("Contact updated successfully!");  
 
           }
@@ -81,11 +81,11 @@ public void updateContact(String name,Long number,String email){
 
 public void updateContact(String name,Long number){
  
-     Contact c=contactlist.get(name);
+     Contact c=contactlist.get(name.toLowerCase());
      String email=c.email;
     
      Contact obj2=new Contact(name,number,email);
-     contactlist.put(name,obj2);
+     contactlist.put(name.toLowerCase(),obj2);
      System.out.println("Contact updated successfully!");
 
 }
@@ -93,12 +93,17 @@ public void updateContact(String name,Long number){
 
 public void updateContact(String name,String email){
  
-     Contact c=contactlist.get(name);
+     Contact c=contactlist.get(name.toLowerCase());
      Long number=c.number;
     
      Contact obj3=new Contact(name,number,email);
-     contactlist.put(name,obj3);
+     contactlist.put(name.toLowerCase(),obj3);
      System.out.println("Contact updated successfully!");
 
 }
+
+public void countContact(){
+
+if(contactlist.isEmpty()){System.out.println("ContactBook Empty!");}
+else{System.out.println("Total Contacts:"+ contactlist.size());}}
 }
