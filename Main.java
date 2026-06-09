@@ -43,7 +43,8 @@ switch (operation){
                                        
                                            if (temp.length()==10 && temp.matches("[0-9]+")){
                                                          number=Long.parseLong(temp);
-                                                         validate=true;}
+                                                         if(cb.isDuplicate(number)){System.out.println("Contact already Exists!");return;}
+                                                         else{validate=true;}}
                                   
                                           else{
                                                         System.out.println("\nInvalid Number");
